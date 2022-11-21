@@ -106,3 +106,54 @@ func (p *int32Pager) PageSize() int32 {
 func (p *int32Pager) NeedAll() bool {
 	return p.needAll
 }
+
+type (
+	Int64Pager interface {
+		Offset() int64
+		SetTotal(int64)
+		Total() int64
+		PageSize() int64
+		NeedAll() bool
+	}
+	int64Pager struct {
+		pageIndex int64
+		pageSize  int64
+		total     int64
+		needAll   bool
+	}
+)
+
+func NewInt64Pager(pageIndex, pageSize int64, needAll bool) Int64Pager {
+	if pageIndex < 1 {
+		pageIndex = pageDefaultPageIndex
+	}
+	if pageSize <= 0 {
+		pageSize = pageDefaultPageSize
+	}
+	return &int64Pager{
+		pageIndex: pageIndex,
+		pageSize:  pageSize,
+		total:     0,
+		needAll:   needAll,
+	}
+}
+
+func (p *int64Pager) Offset() int64 {
+	return (p.pageIndex - 1) * p.pageSize
+}
+
+func (p *int64Pager) SetTotal(total int64) {
+	p.total = total
+}
+
+func (p *int64Pager) Total() int64 {
+	return p.total
+}
+
+func (p *int64Pager) PageSize() int64 {
+	return p.pageSize
+}
+
+func (p *int64Pager) NeedAll() bool {
+	return p.needAll
+}
