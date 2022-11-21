@@ -1,4 +1,4 @@
-module qjwwy.com/qjwwy-common
+module github.com/alsritter/qjwwy-common
 
 go 1.18
 

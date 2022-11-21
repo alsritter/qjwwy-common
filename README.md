@@ -6,4 +6,7 @@
 ```sh
 git remote set-url --add origin git@github.com:alsritter/qjwwy-common.git
 git push -u origin master
+
+# Golang 使用
+go get github.com/alsritter/qjwwy-common
 ```
